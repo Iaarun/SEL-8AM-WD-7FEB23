@@ -27,4 +27,6 @@ public class _004UserInput {
 		 System.out.println(ch);
 		 
 	}
+	
+	
 }
