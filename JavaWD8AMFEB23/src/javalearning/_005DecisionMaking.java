@@ -85,13 +85,13 @@ public class _005DecisionMaking {
 		  break;
 	  case "yellow":
 		  System.out.println("PREPARE TO STOP/GO");
-		  break;
+		
 	  case "green":
 		  System.out.println("GO");
-		  break;
+		 
 	  default: 
 		  System.out.println("Take proper decision");
-		  break;
+		
 			  
 	  }
   }
