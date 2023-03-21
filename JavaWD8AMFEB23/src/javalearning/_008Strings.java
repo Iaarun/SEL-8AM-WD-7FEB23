@@ -4,8 +4,19 @@ public class _008Strings {
 	
 	public static void main(String[] args) {
 		_008Strings strobj = new _008Strings();
-		strobj.basicStringMethods();
+		strobj.internfunction();
 		
+	}
+	
+	public static void internfunction() {
+		String str = "Java";
+		String str2 = new String("Java").intern();
+		
+		if(str2==str) {
+		System.out.println("same add");
+	}else {
+		System.out.println("diff add");
+	}
 	}
 	
 	public void basicStringMethods() {
@@ -55,6 +66,17 @@ public class _008Strings {
 		
 		System.out.println(email.substring(0, email.indexOf("@")));
 		
+		 String[] arr= email.split("\\.");
+		 
+		 System.out.println(arr[0]);
+		 System.out.println(arr[1]);
+		
+		 
+	char[] charr=	 email.toCharArray();
+	
+	for(char x: charr) {
+		System.out.println(x);
+	}
 		
 		
 		
