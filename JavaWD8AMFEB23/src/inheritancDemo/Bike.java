@@ -18,6 +18,7 @@ public class Bike {
 		speed -= decrement;
 	}
 
+		
 	@Override
 	public String toString() {
 		return "Bike [gear=" + gear + ", speed=" + speed + "]";
