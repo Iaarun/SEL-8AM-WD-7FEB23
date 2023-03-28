@@ -15,8 +15,6 @@ public class Test  extends AbstractClass implements Interface1, Interface2{
 			}
 		};
 		
-//		abs.test1();
-//		abs.test2();
 		
 		Test t1 = new Test();
 		t1.test1();
@@ -31,15 +29,9 @@ public class Test  extends AbstractClass implements Interface1, Interface2{
 
 	@Override
 	public void test3() {
-		// TODO Auto-generated method stub
-		
+           System.out.println("Test 3");		
 	}
 
-	@Override
-	public void test4() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	
 	
