@@ -1,6 +1,7 @@
 package collectionDemo;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -66,6 +67,28 @@ public class HashMapdemo {
 		for(Map.Entry entry: set) {
 			System.out.println(entry.getKey()+"|"+entry.getValue());
 		}
+		
+		System.out.println("===Iterate using foreach function with lambda===");
+		
+		hmap.forEach((k,v)->{
+			System.out.println(k+">>"+v);
+		});
+		
+		System.out.println("===Iterate using stream===");
+		
+		hmap.entrySet().stream().forEach(x->{
+			System.out.println(x.getKey()+"||"+x.getValue());
+		});
+		
+		System.out.println("===Iterate using iterator===");
+		
+		Iterator<Entry<Integer, String>> it=  hmap.entrySet().iterator();
+		
+		while(it.hasNext()) {
+		    Entry entry= it.next();
+		    
+		    System.out.print(entry.getKey()+"=="+entry.getValue());
+		}		
 		
 	}
 }

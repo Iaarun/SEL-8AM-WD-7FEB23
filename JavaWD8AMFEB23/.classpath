@@ -1,10 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/batik-anim-1.14.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/batik-awt-util-1.14.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/batik-bridge-1.14.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/batik-codec-1.14.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/batik-constants-1.14.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/batik-css-1.14.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/batik-dom-1.14.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/batik-ext-1.14.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/batik-gvt-1.14.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/batik-i18n-1.14.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/batik-parser-1.14.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/batik-script-1.14.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/batik-shared-resources-1.14.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/batik-svg-dom-1.14.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/batik-svggen-1.14.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/batik-svgrasterizer-1.14.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/batik-transcoder-1.14.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/batik-util-1.14.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/batik-xml-1.14.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/bcpkix-jdk15on-1.70.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/bcprov-jdk15on-1.70.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/bcutil-jdk15on-1.70.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/commons-codec-1.15.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/commons-collections4-4.4.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/commons-compress-1.21.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/commons-io-2.11.0.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/commons-math3-3.6.1.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/curvesapi-1.06.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/fontbox-2.0.25.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/graphics2d-0.34.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/log4j-api-2.17.1.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/pdfbox-2.0.25.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/poi-5.2.0.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/poi-examples-5.2.0.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/poi-excelant-5.2.0.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/poi-javadoc-5.2.0.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/poi-ooxml-5.2.0.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/poi-ooxml-full-5.2.0.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/poi-ooxml-lite-5.2.0.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/poi-scratchpad-5.2.0.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/slf4j-api-1.7.32.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/SparseBitSet-1.2.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/xml-apis-1.4.01.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/xml-apis-ext-1.3.04.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/xmlbeans-5.0.3.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/xmlgraphics-commons-2.6.jar"/>
+	<classpathentry kind="lib" path="D:/Automationtools/poi-bin-5.2.0/alljar/xmlsec-2.3.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
