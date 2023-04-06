@@ -1,0 +1,20 @@
+Selenium if open source
+its easy to learn
+it supports multiple browser
+supports multiple platforms
+supports multiple language
+
+https://www.selenium.dev/
+
+tool-suite
+
+IDE- plugin used for record and playback
+
+Webdriver - its a browser automation tool
+
+Grid- used to scale your testcases by distributing and running them on multiple platoforms, environments
+
+https://www.selenium.dev/downloads/
+
+JavaProject >> Properties >> Java Build path >> Libraries
+>> class path >> Add External Jars
