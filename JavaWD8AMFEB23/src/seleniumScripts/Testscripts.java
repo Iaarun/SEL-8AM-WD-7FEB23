@@ -1,5 +1,7 @@
 package seleniumScripts;
 
+
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -22,6 +24,10 @@ public class Testscripts {
 		}
 		
 		driver.manage().window().maximize();
+	//	driver.manage().window().minimize();
+		
+//		Dimension d = new Dimension(800,600);
+//		driver.manage().window().setSize(d);
 		
 	}
 	
@@ -49,7 +55,10 @@ public class Testscripts {
 	
 	public void launchBrowsers() {
 		//to launch chrome browser
+	//	driver = new ChromeDriver();
+		//tolaunch firefox
 		driver = new FirefoxDriver();
+		
 		driver.manage().window().maximize();
 		driver.manage().window().minimize();
 		driver.close();
