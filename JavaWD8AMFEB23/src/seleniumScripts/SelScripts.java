@@ -16,7 +16,23 @@ public class SelScripts {
 	public static void main(String[] args) throws InterruptedException {
 		SelScripts ss = new SelScripts();
 		ss.launchBrowseronchoice("chrome");
-		ss.modaldialogWindow();
+		ss.handlingframes();
+
+	}
+
+	public void handlingframes() {
+		driver.get("https://jqueryui.com/droppable/");
+		WebElement frame = driver.findElement(By.xpath("//iframe[@class='demo-frame']"));
+		driver.switchTo().frame(0);
+		WebElement drag = driver.findElement(By.id("draggable"));
+
+		System.out.println(drag.isDisplayed());
+        // to come out of frame
+		driver.switchTo().defaultContent();
+		
+	//	driver.switchTo().parentFrame();
+		WebElement logo = driver.findElement(By.xpath("//a[@href='/']"));
+		System.out.println(logo.isDisplayed());
 
 	}
 
@@ -24,12 +40,12 @@ public class SelScripts {
 		driver.get("https://bonigarcia.dev/selenium-webdriver-java/dialog-boxes.html");
 		WebElement modalBtn = driver.findElement(By.id("my-modal"));
 		modalBtn.click();
-		
-		WebElement savebtn= driver.findElement(By.xpath("//button[contains(text(),'Save')]"));
+
+		WebElement savebtn = driver.findElement(By.xpath("//button[contains(text(),'Save')]"));
 		savebtn.click();
-	    String text=	driver.findElement(By.id("modal-text")).getText();
-	    
-	    System.out.println(text);
+		String text = driver.findElement(By.id("modal-text")).getText();
+
+		System.out.println(text);
 	}
 
 	public void handlealert() {
