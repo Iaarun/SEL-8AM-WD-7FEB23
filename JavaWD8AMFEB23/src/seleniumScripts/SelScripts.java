@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 
 public class SelScripts {
 	WebDriver driver;
@@ -16,7 +17,37 @@ public class SelScripts {
 	public static void main(String[] args) throws InterruptedException {
 		SelScripts ss = new SelScripts();
 		ss.launchBrowseronchoice("chrome");
-		ss.handlingframes();
+		ss.handletooltip();
+
+	}
+	
+	public void handletooltip() {
+		driver.get("https://jqueryui.com/tooltip/");
+		driver.switchTo().frame(0);
+		WebElement age= driver.findElement(By.id("age"));
+		System.out.println(age.getAttribute("title"));
+	}
+
+	public void handleslider() {
+		driver.get("https://jqueryui.com/slider/");
+		driver.switchTo().frame(0);
+		WebElement slider = driver.findElement(By.xpath("//div[@id='slider']/span"));
+		
+		Actions actions = new Actions(driver);
+		actions.clickAndHold(slider).moveByOffset(500, 0).release().build().perform();
+		actions.clickAndHold(slider).moveByOffset(-500, 0).release().build().perform();
+	}
+
+	public void handledragandDrop() {
+		driver.get("https://jqueryui.com/droppable/");
+		driver.switchTo().frame(0);
+		WebElement drag = driver.findElement(By.id("draggable"));
+		WebElement drop = driver.findElement(By.id("droppable"));
+
+		Actions action = new Actions(driver);
+
+		// action.clickAndHold(drag).moveToElement(drop).release().build().perform();
+		action.dragAndDrop(drag, drop).perform();
 
 	}
 
@@ -27,10 +58,10 @@ public class SelScripts {
 		WebElement drag = driver.findElement(By.id("draggable"));
 
 		System.out.println(drag.isDisplayed());
-        // to come out of frame
+		// to come out of frame
 		driver.switchTo().defaultContent();
-		
-	//	driver.switchTo().parentFrame();
+
+		// driver.switchTo().parentFrame();
 		WebElement logo = driver.findElement(By.xpath("//a[@href='/']"));
 		System.out.println(logo.isDisplayed());
 
