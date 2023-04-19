@@ -1,15 +1,20 @@
 package seleniumScripts;
 
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.time.Duration;
+import java.util.Iterator;
 import java.util.List;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 
 public class SelScripts {
 	WebDriver driver;
@@ -17,25 +22,78 @@ public class SelScripts {
 	public static void main(String[] args) throws InterruptedException {
 		SelScripts ss = new SelScripts();
 		ss.launchBrowseronchoice("chrome");
-		ss.handletooltip();
+		ss.handleDropdown();
 
 	}
-	
+
+	public void handleDropdown() {
+		driver.get("https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
+		WebElement dd = driver.findElement(By.name("my-select"));
+     // use select class to handle dropdown
+		Select select = new Select(dd);
+		
+		//get default value from dropdown
+		System.out.println(select.getFirstSelectedOption().getText());
+		System.out.println("==================");
+		//get options from dropdown
+		List<WebElement> li= select.getOptions();
+		
+		for(WebElement x: li) {
+			System.out.println(x.getText());
+		}
+		
+		select.selectByValue("2");
+		select.selectByVisibleText("Three");
+	}
+
+	public void difffindelementandelements() {
+		driver.get("https://www.google.com/");
+		// WebElement search= driver.findElement(By.name("q1"));
+		// System.out.println(search);
+
+		List<WebElement> li = driver.findElements(By.name("q1"));
+		System.out.println(li.size() + "\n" + li);
+
+	}
+
+	public void handleAutosuggestion() {
+		driver.get("https://www.google.com/");
+		WebElement search = driver.findElement(By.name("q"));
+		search.sendKeys("test");
+
+		List<WebElement> li = driver.findElements(By.xpath("//div[@id='Alh6id']/div[1]/div[1]/ul/li"));
+		System.out.println(li);
+
+		for (WebElement x : li) {
+			if (x.getText().contains("internet")) {
+				x.click();
+			}
+		}
+	}
+
 	public void handletooltip() {
 		driver.get("https://jqueryui.com/tooltip/");
 		driver.switchTo().frame(0);
-		WebElement age= driver.findElement(By.id("age"));
+		WebElement age = driver.findElement(By.id("age"));
 		System.out.println(age.getAttribute("title"));
+//		Actions actions = new Actions(driver);
+//		actions.click(age).keyDown(Keys.SHIFT).sendKeys(Keys.)
+
+		age.sendKeys(Keys.SHIFT, "This is typing");
+
+//		Robot robot = new Robot();
+
 	}
 
 	public void handleslider() {
 		driver.get("https://jqueryui.com/slider/");
 		driver.switchTo().frame(0);
 		WebElement slider = driver.findElement(By.xpath("//div[@id='slider']/span"));
-		
+
 		Actions actions = new Actions(driver);
 		actions.clickAndHold(slider).moveByOffset(500, 0).release().build().perform();
 		actions.clickAndHold(slider).moveByOffset(-500, 0).release().build().perform();
+
 	}
 
 	public void handledragandDrop() {
