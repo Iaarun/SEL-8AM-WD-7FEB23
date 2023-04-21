@@ -6,7 +6,9 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -15,7 +17,9 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriver.Window;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -28,8 +32,69 @@ public class SelScripts {
 	public static void main(String[] args) throws InterruptedException, IOException {
 		SelScripts ss = new SelScripts();
 		ss.launchBrowseronchoice("chrome");
-		ss.handleFileupload();
+		ss.handlemorethan3tabs();
 
+	}
+
+	public void handlemorethan3tabs() {
+		 Set<String> allids = new LinkedHashSet<>();
+		driver.get("https://www.naukri.com/");
+		String tab1 = driver.getWindowHandle();
+		allids.add(tab1);
+		WebElement services = driver.findElement(By.xpath("//div[contains(text(),'Services')]"));
+		services.click();
+		Set<String> twotabs= driver.getWindowHandles();
+		allids.addAll(twotabs);
+
+		WebElement companies = driver.findElement(By.xpath("//div[contains(text(),'Companies')]"));
+		Actions action = new Actions(driver);
+
+		action.keyDown(Keys.CONTROL).click(companies).keyUp(Keys.CONTROL).build().perform();
+		Set<String> alltabs = driver.getWindowHandles();
+		allids.addAll(alltabs);
+		
+		 Iterator<String> it= allids.iterator();
+		  String ftab=  it.next();
+		  driver.switchTo().window(ftab);
+		 System.out.println(driver.getCurrentUrl());
+		  String stab= it.next();
+		  driver.switchTo().window(stab);
+		 System.out.println(driver.getCurrentUrl());
+		 String ttab=it.next();
+		 driver.switchTo().window(ttab);
+		 System.out.println(driver.getCurrentUrl());
+		// driver.close();
+		 
+		 driver.quit();
+	}
+
+	public void handlemultipletabs() {
+		driver.get("https://www.naukri.com/");
+		String tab1 = driver.getWindowHandle();
+		WebElement services = driver.findElement(By.xpath("//div[contains(text(),'Services')]"));
+		services.click();
+		Set<String> allids = driver.getWindowHandles();
+
+		for (String x : allids) {
+			if (!x.equals(tab1)) {
+				driver.switchTo().window(x);
+				System.out.println(driver.getCurrentUrl());
+				driver.close();
+			}
+		}
+
+		driver.switchTo().window(tab1);
+		System.out.println(driver.getCurrentUrl());
+	}
+
+	public void openNewTabWithSelenium() {
+		driver.get("https://www.naukri.com/");
+		String tab1 = driver.getWindowHandle();
+		System.out.println(tab1);
+		driver.switchTo().newWindow(WindowType.TAB);
+		String tab2 = driver.getWindowHandle();
+		System.out.println(tab2);
+		driver.get("https://resume.naukri.com/?fftid=100001");
 	}
 
 	public void handleFileupload() {
