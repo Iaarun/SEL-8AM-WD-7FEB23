@@ -2,48 +2,102 @@ package seleniumScripts;
 
 import java.awt.AWTException;
 import java.awt.Robot;
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.Select;
 
 public class SelScripts {
 	WebDriver driver;
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, IOException {
 		SelScripts ss = new SelScripts();
 		ss.launchBrowseronchoice("chrome");
-		ss.handleDropdown();
+		ss.handleFileupload();
 
 	}
 
-	public void handleDropdown() {
+	public void handleFileupload() {
+		driver.get("https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
+		WebElement file = driver.findElement(By.name("my-file"));
+		file.sendKeys("D:\\screenshot\\img.png");
+	}
+
+	public void handleScrolling() {
+		driver.get("http://www.tizag.com/javascriptT/javascriptalert.php");
+
+		JavascriptExecutor js = ((JavascriptExecutor) driver);
+
+		// random scroll
+//		js.executeScript("window.scrollBy(0,500)", "");
+
+		// scroll to bring an element into view
+		// WebElement btn= driver.findElement(By.xpath("//input[@value='Confirmation
+		// Alert']"));
+
+		// js.executeScript("arguments[0].scrollIntoView()", btn);
+
+		js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
+
+	}
+
+	public void capturescreenshot() throws IOException {
 		driver.get("https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
 		WebElement dd = driver.findElement(By.name("my-select"));
-     // use select class to handle dropdown
+		// use select class to handle dropdown
 		Select select = new Select(dd);
-		
-		//get default value from dropdown
+		select.selectByVisibleText("Three");
+
+		File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+		FileHandler.copy(file, new File("D:\\screenshot\\dd.png"));
+
+		WebElement img = driver.findElement(By.xpath("//img[@class='img-fluid']"));
+
+		file = img.getScreenshotAs(OutputType.FILE);
+		FileHandler.copy(file, new File("D:\\screenshot\\img.png"));
+	}
+
+	public void handleDropdown() throws InterruptedException {
+		driver.get("https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
+		WebElement dd = driver.findElement(By.name("my-select"));
+		// use select class to handle dropdown
+		Select select = new Select(dd);
+
+		// get default value from dropdown
 		System.out.println(select.getFirstSelectedOption().getText());
 		System.out.println("==================");
-		//get options from dropdown
-		List<WebElement> li= select.getOptions();
-		
-		for(WebElement x: li) {
+		// get options from dropdown
+		List<WebElement> li = select.getOptions();
+
+		for (WebElement x : li) {
 			System.out.println(x.getText());
 		}
-		
+
 		select.selectByValue("2");
+		Thread.sleep(1000);
 		select.selectByVisibleText("Three");
+		Thread.sleep(1000);
+		select.selectByIndex(0);
+
+		// check whether dropdown supports the multiple selection
+		System.out.println(select.isMultiple()); // false
+
 	}
 
 	public void difffindelementandelements() {
