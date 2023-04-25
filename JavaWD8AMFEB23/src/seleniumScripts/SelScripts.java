@@ -32,18 +32,55 @@ public class SelScripts {
 	public static void main(String[] args) throws InterruptedException, IOException {
 		SelScripts ss = new SelScripts();
 		ss.launchBrowseronchoice("chrome");
-		ss.handlemorethan3tabs();
+		ss.handletables();
 
 	}
 
+	public void handletables() {
+		driver.get("https://www.moneycontrol.com/markets/indian-indices/");
+
+		List<WebElement> columns = driver.findElements(By.xpath("//table[@id='indicesTable']/thead/tr/th"));
+        int colNo= columns.size();
+        
+       List<WebElement> rows=   driver.findElements(By.xpath("//table[@id='indicesTable']/tbody/tr"));
+        int rowNum=rows.size();	
+        
+        System.out.println("Number of rows: "+rowNum+"\nNumber of Columns: "+colNo);
+        //row data
+        
+        for(int i=1; i<=colNo; i++) {
+        	String data=driver.findElement(By.xpath("//table[@id='indicesTable']/tbody/tr[1]/td["+i+"]")).getText();
+          System.out.print(data+" | ");
+        }
+        
+        System.out.println();
+        System.out.println("==============");
+       //column data
+        for(int i=1; i<=rowNum; i++) {
+        	String data=driver.findElement(By.xpath("//table[@id='indicesTable']/tbody/tr["+i+"]/td[1]")).getText();
+          System.out.println(data);
+        }
+        
+        System.out.println("========================================================");
+      //table data
+        for(int i=1; i<=rowNum; i++) {
+        	for(int j=1; j<=colNo;j++) {
+        		String data=driver.findElement(By.xpath("//table[@id='indicesTable']/tbody/tr["+i+"]/td["+j+"]")).getText();
+                System.out.print(data+" | ");
+        	}
+        	System.out.println();
+        	
+        }
+	}
+
 	public void handlemorethan3tabs() {
-		 Set<String> allids = new LinkedHashSet<>();
+		Set<String> allids = new LinkedHashSet<>();
 		driver.get("https://www.naukri.com/");
 		String tab1 = driver.getWindowHandle();
 		allids.add(tab1);
 		WebElement services = driver.findElement(By.xpath("//div[contains(text(),'Services')]"));
 		services.click();
-		Set<String> twotabs= driver.getWindowHandles();
+		Set<String> twotabs = driver.getWindowHandles();
 		allids.addAll(twotabs);
 
 		WebElement companies = driver.findElement(By.xpath("//div[contains(text(),'Companies')]"));
@@ -52,20 +89,20 @@ public class SelScripts {
 		action.keyDown(Keys.CONTROL).click(companies).keyUp(Keys.CONTROL).build().perform();
 		Set<String> alltabs = driver.getWindowHandles();
 		allids.addAll(alltabs);
-		
-		 Iterator<String> it= allids.iterator();
-		  String ftab=  it.next();
-		  driver.switchTo().window(ftab);
-		 System.out.println(driver.getCurrentUrl());
-		  String stab= it.next();
-		  driver.switchTo().window(stab);
-		 System.out.println(driver.getCurrentUrl());
-		 String ttab=it.next();
-		 driver.switchTo().window(ttab);
-		 System.out.println(driver.getCurrentUrl());
+
+		Iterator<String> it = allids.iterator();
+		String ftab = it.next();
+		// driver.switchTo().window(ftab);
+		// System.out.println(driver.getCurrentUrl());
+		String stab = it.next();
+		// driver.switchTo().window(stab);
+		// System.out.println(driver.getCurrentUrl());
+		String ttab = it.next();
+		driver.switchTo().window(ttab);
+		System.out.println(driver.getCurrentUrl());
 		// driver.close();
-		 
-		 driver.quit();
+
+		driver.quit();
 	}
 
 	public void handlemultipletabs() {
