@@ -14,6 +14,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -24,7 +25,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.io.FileHandler;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SelScripts {
 	WebDriver driver;
@@ -32,7 +36,57 @@ public class SelScripts {
 	public static void main(String[] args) throws InterruptedException, IOException {
 		SelScripts ss = new SelScripts();
 		ss.launchBrowseronchoice("chrome");
-		ss.handletables();
+		ss.seleniumwaits();
+		ss.closebrowser();
+
+	}
+	
+	public void closebrowser() {
+		driver.close();
+		
+	}
+	
+	public void seleniumwaits() {
+		driver.get("https://bonigarcia.dev/selenium-webdriver-java/loading-images.html");
+		
+		//explicit wait 
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		
+	  wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//p[contains(text(),'Done!')]")));
+	  WebElement done=   driver.findElement(By.xpath("//p[contains(text(),'Done!')]"));	
+	  System.out.println(done.isDisplayed());
+	  
+	  FluentWait wait1 = new FluentWait(driver);
+	  wait1.withTimeout(Duration.ofSeconds(15));
+	  wait1.pollingEvery(Duration.ofSeconds(2));
+	  wait1.ignoring(NoSuchElementException.class);
+	  
+	  
+	}
+
+	public void handleCalenders() {
+		driver.get("https://jqueryui.com/datepicker/");
+		driver.switchTo().frame(0);
+		WebElement datepicker = driver.findElement(By.id("datepicker"));
+		datepicker.click();
+		String calTitle = driver.findElement(By.className("ui-datepicker-title")).getText();
+		System.out.println(calTitle);
+
+		String month = calTitle.split(" ")[0].trim();
+		String year = calTitle.split(" ")[1].trim();
+		
+		System.out.println(month);
+		System.out.println(year);
+		String nyear= String.valueOf(Integer.parseInt(year)+1);
+		
+		while(!(month.equals("March") && year.equals(nyear))) {
+			driver.findElement(By.xpath("//span[@class='ui-icon ui-icon-circle-triangle-e']")).click();
+			calTitle = driver.findElement(By.className("ui-datepicker-title")).getText();
+			month = calTitle.split(" ")[0].trim();
+			year = calTitle.split(" ")[1].trim();
+		}
+		
+		driver.findElement(By.xpath("//a[normalize-space()='31']")).click();
 
 	}
 
@@ -40,37 +94,41 @@ public class SelScripts {
 		driver.get("https://www.moneycontrol.com/markets/indian-indices/");
 
 		List<WebElement> columns = driver.findElements(By.xpath("//table[@id='indicesTable']/thead/tr/th"));
-        int colNo= columns.size();
-        
-       List<WebElement> rows=   driver.findElements(By.xpath("//table[@id='indicesTable']/tbody/tr"));
-        int rowNum=rows.size();	
-        
-        System.out.println("Number of rows: "+rowNum+"\nNumber of Columns: "+colNo);
-        //row data
-        
-        for(int i=1; i<=colNo; i++) {
-        	String data=driver.findElement(By.xpath("//table[@id='indicesTable']/tbody/tr[1]/td["+i+"]")).getText();
-          System.out.print(data+" | ");
-        }
-        
-        System.out.println();
-        System.out.println("==============");
-       //column data
-        for(int i=1; i<=rowNum; i++) {
-        	String data=driver.findElement(By.xpath("//table[@id='indicesTable']/tbody/tr["+i+"]/td[1]")).getText();
-          System.out.println(data);
-        }
-        
-        System.out.println("========================================================");
-      //table data
-        for(int i=1; i<=rowNum; i++) {
-        	for(int j=1; j<=colNo;j++) {
-        		String data=driver.findElement(By.xpath("//table[@id='indicesTable']/tbody/tr["+i+"]/td["+j+"]")).getText();
-                System.out.print(data+" | ");
-        	}
-        	System.out.println();
-        	
-        }
+		int colNo = columns.size();
+
+		List<WebElement> rows = driver.findElements(By.xpath("//table[@id='indicesTable']/tbody/tr"));
+		int rowNum = rows.size();
+
+		System.out.println("Number of rows: " + rowNum + "\nNumber of Columns: " + colNo);
+		// row data
+
+		for (int i = 1; i <= colNo; i++) {
+			String data = driver.findElement(By.xpath("//table[@id='indicesTable']/tbody/tr[1]/td[" + i + "]"))
+					.getText();
+			System.out.print(data + " | ");
+		}
+
+		System.out.println();
+		System.out.println("==============");
+		// column data
+		for (int i = 1; i <= rowNum; i++) {
+			String data = driver.findElement(By.xpath("//table[@id='indicesTable']/tbody/tr[" + i + "]/td[1]"))
+					.getText();
+			System.out.println(data);
+		}
+
+		System.out.println("========================================================");
+		// table data
+		for (int i = 1; i <= rowNum; i++) {
+			for (int j = 1; j <= colNo; j++) {
+				String data = driver
+						.findElement(By.xpath("//table[@id='indicesTable']/tbody/tr[" + i + "]/td[" + j + "]"))
+						.getText();
+				System.out.print(data + " | ");
+			}
+			System.out.println();
+
+		}
 	}
 
 	public void handlemorethan3tabs() {
@@ -366,7 +424,8 @@ public class SelScripts {
 		}
 
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		//implicit wait
+	//	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 		// driver.manage().window().minimize();
 
 //		Dimension d = new Dimension(800,600);
