@@ -37,8 +37,9 @@ public class SelScripts {
 		SelScripts ss = new SelScripts();
 		ss.launchBrowseronchoice("chrome");
 		ss.seleniumwaits();
+		ss.handleCalenders();
 		ss.closebrowser();
-
+		
 	}
 	
 	public void closebrowser() {
