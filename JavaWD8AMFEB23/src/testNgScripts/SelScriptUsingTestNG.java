@@ -17,13 +17,13 @@ import org.testng.annotations.Test;
 public class SelScriptUsingTestNG {
 	WebDriver driver;
 
-	@BeforeClass
+	@BeforeMethod
 	public void launchBrowseronchoice() {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 	}
 	
-	@AfterClass
+	@AfterMethod
 	public void closebrowser() {
 		driver.close();
 	}
