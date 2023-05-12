@@ -10,38 +10,43 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.AfterSuite;
 
-public class NewTest3 {
+public class GroupsTest {
 
-	@Test(priority = 3)
+	@Test(priority = 3, groups = "regression")
 	public void test5() {
 		System.out.println("Test Method5");
 	}
 
-	@Test(priority =-2)
+	@Test(priority =-2, groups = "sanity")
 	public void test1() {
 		System.out.println("Test Method1");
 	}
 
-	@Test(priority =0)
+	@Test (groups = {"sanity","regression"})
 	public void test2() {
 		System.out.println("Test Method2");
 	}
 
-	@Test (invocationCount = 0)
+	@Test (invocationCount = 0, groups = "regression")
 	public void test3() {
 		System.out.println("Test Method3");
 	}
 
-	@Test (timeOut = 2000)
+	@Test (timeOut = 2000, groups = "regression")
 	public void test4() throws InterruptedException {
 		System.out.println("Test Method4");
 		Thread.sleep(3000);
 	}
 	
-	@Test (expectedExceptions = ArithmeticException.class)
+	@Test (expectedExceptions = ArithmeticException.class, groups = "regression")
 	public void test6() {
-		System.out.println("Test Method3");
+		System.out.println("Test Method6");
 		System.out.println(1/0);
+	}
+	
+	@Test
+	public void test7() {
+		System.out.println("Test Method7");
 	}
 
 }

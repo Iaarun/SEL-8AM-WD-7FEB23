@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="2" name="ParameterSuite" parallel="tests">
+	 <!-- <parameter name="browservalue" value="firefox"></parameter> -->
+  <test  name="ChromeTest" parallel="tests">
+	  <parameter name="browservalue" value="chrome"></parameter>
+    <classes>
+      <class name="testNgScripts.ParameterizationinTestNg"/>
+    </classes>
+  </test> <!-- Test -->
+  
+  <test  name="FirefoxTest" parallel="tests">
+	  <parameter name="browservalue" value="firefox"></parameter>
+    <classes>
+      <class name="testNgScripts.ParameterizationinTestNg"/>
+    </classes>
+  </test>
+
+</suite> <!-- ParameterSuite -->
